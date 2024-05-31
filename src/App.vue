@@ -2,20 +2,19 @@
 
 import axios from 'axios'
 import { store } from './data/store';
+import Main from './components/Main.vue';
 
 export default {
-  data() {
-    return {
-      projects: []
-    }
+  components: {
+    Main
   },
 
   methods: {
     getApi() {
       axios.get(store.apiUrl)
       .then(response => {
-        this.projects = response.data;
-        console.log(this.projects);
+        store.projects = response.data;
+        console.log(store.projects);
       })
       .catch( error => {
         console.log(error.message);
@@ -30,9 +29,9 @@ export default {
 </script>
 
 <template>
-  <div>
-    <h1>Front End</h1>
-  </div>
+
+  <Main />
+
 </template>
 
 <style lang="scss" scoped>
