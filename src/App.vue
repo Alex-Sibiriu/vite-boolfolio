@@ -17,7 +17,6 @@ export default {
       .then(response => {
         store.projects = response.data.data;
         store.pageLinks = response.data.links;
-        console.log(store.projects);
       })
       .catch( error => {
         console.log(error.message);

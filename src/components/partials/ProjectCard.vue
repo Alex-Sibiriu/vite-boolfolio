@@ -11,8 +11,16 @@ export default {
   <div class="card-box">
     <div class="card">
       <h3>{{ project.title }}</h3>
+      <p><strong>Tipo: </strong><span class="type-badge">{{ project.type.name }}</span></p>
+      <p v-if="project.technologies.length > 0">
+        <strong>Tecnologie: </strong>
+        <span
+          v-for="technology in project.technologies"
+          :key="`${project.title}-t-${technology.id}`"
+          class="tech-badge">{{ technology.name }}</span>
+        </p>
       <p><strong>Descrizione: </strong>{{ project.description }}</p>
-      <p><strong>Link: </strong>{{ project.link }}</p>
+      <p class="link"><strong>Link: </strong>{{ project.link }}</p>
     </div>
   </div>
 </template>
@@ -24,15 +32,34 @@ export default {
   width: calc(100% / 3);
   .card {
     height: 100%;
-    padding: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: column; 
+    padding: 10px;
     text-align: center;
     background-color: ivory;
     border-radius: 10px;
+    h3 {
+      padding-bottom: 10px;
+    }
     p {
-      padding: 5px 0;
+      padding: 10px 0;
+      .tech-badge {
+        padding: 6px 10px;
+        border-radius: 20px;
+        background: steelblue;
+        color: white;
+        margin: 10px 5px;
+      }
+      .type-badge {
+        padding: 6px 10px;
+        border-radius: 20px;
+        background: palevioletred;
+        color: white;
+        margin: 5px 5px;
+      }
+      &.link {
+        margin-top: auto;
+      }
     }
   }
 }
