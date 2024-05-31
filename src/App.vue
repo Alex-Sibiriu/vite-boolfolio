@@ -3,9 +3,11 @@
 import axios from 'axios'
 import { store } from './data/store';
 import Main from './components/Main.vue';
+import Header from './components/Header.vue';
 
 export default {
   components: {
+    Header,
     Main
   },
 
@@ -13,7 +15,8 @@ export default {
     getApi() {
       axios.get(store.apiUrl)
       .then(response => {
-        store.projects = response.data;
+        store.projects = response.data.data;
+        store.pageLinks = response.data.links;
         console.log(store.projects);
       })
       .catch( error => {
@@ -30,7 +33,11 @@ export default {
 
 <template>
 
-  <Main />
+  <Header />
+
+  <Main 
+    @changePage="getApi()"
+  />
 
 </template>
 

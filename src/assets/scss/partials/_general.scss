@@ -5,15 +5,19 @@
 }
 
 body {
-  background-color: rgb(158, 119, 67);
+  background-color: gainsboro;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }
 
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: burlywood;
-  h1 {
-    text-align: center;
-  }
 }

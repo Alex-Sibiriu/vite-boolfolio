@@ -29,7 +29,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    background-color: antiquewhite;
+    background-color: ivory;
     border-radius: 10px;
     p {
       padding: 5px 0;
