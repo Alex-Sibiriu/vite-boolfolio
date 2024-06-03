@@ -55,7 +55,12 @@ export default {
     },
 
     searchProjects() {
-      axios.get(store.apiUrl + '/search/' + this.toSearch)
+      axios.get(store.apiUrl + '/search/', {
+        params: {
+          title: this.toSearch,
+          type: this.searchType
+        }
+      })
       .then(response => {
         this.projects = response.data.data;
         this.pageLinks = response.data.links;
@@ -128,7 +133,10 @@ export default {
           </div>
         </div>
   
-        <div class="search-btn" @click="toSearch != '' ? searchProjects() : getApi(store.apiUrl)">
+        <div
+          class="search-btn"
+          
+          @click="searchProjects()">
           Cerca
         </div>
 
@@ -174,6 +182,7 @@ export default {
       }
     }
     .filter-box {
+      border-left: 1px solid ivory;
       width: 25%;
       padding: 10px;
       display: flex;
