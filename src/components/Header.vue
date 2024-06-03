@@ -18,14 +18,19 @@ export default {
     <div class="container">
       <ul>
         <li>
-          <a href="#">Home</a>
+          <router-link :to="{name: 'home'}">Home</router-link>
+        </li>
+
+        
+        <li>
+          <router-link :to="{name: 'projects'}">Progetti</router-link>
         </li>
 
         <li>
-          <a href="#">Lista Progetti</a>
+          <router-link :to="{name: 'contacts'}">Contatti</router-link>
         </li>
-        
       </ul>
+        
     </div>
   </header>
 
@@ -44,29 +49,34 @@ header {
     transition: all .3s;
   }
 
-  ul {
+  .container {
     display: flex;
-    li {
-      min-width: 100px;
-      padding: 0 10px;
-      border: 4px solid lightslategray;
-      border-bottom: none;
-      text-align: center;
-      &:hover {
-        background-color: gainsboro;
-        border: 4px inset lightslategray;
+    ul {
+      display: flex;
+      li {
+        min-width: 100px;
+        border: 4px solid lightslategray;
         border-bottom: none;
-        a {
-          color: lightslategray;
+        text-align: center;
+        &:hover {
+          background-color: gainsboro;
+          border: 4px inset lightslategray;
+          border-bottom: none;
+          a {
+            color: lightslategray;
+          }
         }
-      }
-      a {
-        line-height: 70px;
-        font-weight: bold;
-        color: white;
+        a {
+          display: inline-block;
+          padding: 0 10px;
+          line-height: 70px;
+          font-weight: bold;
+          color: white;
+        }
       }
     }
   }
+
   
 }
 

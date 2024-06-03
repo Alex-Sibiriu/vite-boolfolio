@@ -13,13 +13,12 @@ export default {
       <h3>{{ project.title }}</h3>
       <p><strong>Tipo: </strong><span class="type-badge">{{ project.type.name }}</span></p>
       <p v-if="project.technologies.length > 0">
-        <strong>Tecnologie: </strong>
+        <strong class="pb-l">Tecnologie: </strong>
         <span
           v-for="technology in project.technologies"
           :key="`${project.title}-t-${technology.id}`"
           class="tech-badge">{{ technology.name }}</span>
         </p>
-      <p><strong>Descrizione: </strong>{{ project.description }}</p>
       <p class="link"><strong>Link: </strong>{{ project.link }}</p>
     </div>
   </div>
@@ -34,6 +33,7 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column; 
+    justify-content: space-between;
     padding: 10px;
     text-align: center;
     background-color: ivory;
@@ -56,9 +56,6 @@ export default {
         background: palevioletred;
         color: white;
         margin: 5px 5px;
-      }
-      &.link {
-        margin-top: auto;
       }
     }
   }
