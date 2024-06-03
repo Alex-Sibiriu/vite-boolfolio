@@ -64,6 +64,7 @@ header {
           border-bottom: none;
           a {
             color: lightslategray;
+            text-shadow: 1px 1px black;
           }
         }
         a {
@@ -71,6 +72,7 @@ header {
           padding: 0 10px;
           line-height: 70px;
           font-weight: bold;
+          font-size: 1.4rem;
           color: white;
         }
       }

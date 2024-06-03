@@ -36,7 +36,7 @@ export default {
     justify-content: space-between;
     padding: 10px;
     text-align: center;
-    background-color: ivory;
+    background: linear-gradient(to bottom right, ivory, silver);
     border-radius: 10px;
     h3 {
       padding-bottom: 10px;
