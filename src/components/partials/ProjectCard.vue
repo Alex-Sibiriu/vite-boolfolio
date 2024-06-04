@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div class="card-box">
+  <router-link :to="{name: 'projectShow', params:{'slug': project.slug }}" class="card-box">
     <div class="card">
       <h3>{{ project.title }}</h3>
       <p><strong>Tipo: </strong><span class="type-badge">{{ project.type.name }}</span></p>
@@ -21,7 +21,7 @@ export default {
         </p>
       <p class="link"><strong>Link: </strong>{{ project.link }}</p>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <style lang="scss" scoped>

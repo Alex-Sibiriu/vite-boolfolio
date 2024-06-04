@@ -86,15 +86,11 @@ export default {
     <div class="main-box">
       <div class="card-wrapper">
 
-        <div v-if="!loading">
+        <div>
           <ProjectCard 
           v-for="project in projects" :key="project.id"
           :project="project"
           />
-        </div>
-
-        <div class="loader-box" v-else>
-          <div class="loader"></div>
         </div>
 
       </div>
@@ -175,11 +171,11 @@ export default {
         display: flex;
         flex-wrap: wrap;
       }
-      > .loader-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+      // > .loader-box {
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      // }
     }
     .filter-box {
       border-left: 1px solid ivory;
@@ -265,32 +261,6 @@ export default {
     }
   }
 }
-
-
-
-.loader {
-  width: fit-content;
-  font-weight: bold;
-  font-family: monospace;
-  font-size: 30px;
-  background:linear-gradient(90deg,#000 50%,#0000 0) right/200% 100%;
-  animation: l21 2s infinite linear;
-}
-.loader::before {
-  content :"Loading...";
-  color: #0000;
-  padding: 0 5px;
-  background: inherit;
-  background-image: linear-gradient(90deg,#fff 50%,#000 0);
-  -webkit-background-clip:text;
-          background-clip:text;
-}
-
-@keyframes l21{
-  100%{background-position: left}
-}
-
-
 
 .paginator {
   display: flex;
