@@ -17,16 +17,16 @@ export default {
   <header>
     <div class="container">
       <ul>
-        <li>
+        <li :class="{'active': this.$route.name === 'home' }">
           <router-link :to="{name: 'home'}">Home</router-link>
         </li>
 
         
-        <li>
+        <li :class="{'active': this.$route.name === 'projects' }">
           <router-link :to="{name: 'projects'}">Progetti</router-link>
         </li>
 
-        <li>
+        <li :class="{'active': this.$route.name === 'contacts' }">
           <router-link :to="{name: 'contacts'}">Contatti</router-link>
         </li>
       </ul>
@@ -38,9 +38,11 @@ export default {
 
 <style lang="scss" scoped>
 
+@import '../assets/scss/partials/variables';
+
 header {
   height: 70px;
-  background-color:  lightslategray;
+  background-color: $secondary-clr;
   margin-bottom: 20px;
 
   .container,
@@ -55,16 +57,17 @@ header {
       display: flex;
       li {
         min-width: 100px;
-        border: 4px solid lightslategray;
+        border: 4px solid $secondary-clr;
         border-bottom: none;
         text-align: center;
-        &:hover {
-          background-color: gainsboro;
-          border: 4px inset lightslategray;
+        &:hover,
+        &.active {
+          background-color: $primary-clr;
+          border: 4px inset $secondary-clr;
           border-bottom: none;
           a {
-            color: lightslategray;
-            text-shadow: 1px 1px black;
+            color: white;
+            text-shadow: 2px 2px $txt-primary;
           }
         }
         a {
@@ -73,13 +76,11 @@ header {
           line-height: 70px;
           font-weight: bold;
           font-size: 1.4rem;
-          color: white;
+          color: $txt-light;
         }
       }
     }
   }
-
-  
 }
 
 </style>

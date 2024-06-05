@@ -25,14 +25,16 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import '../assets/scss/partials/variables';
 
 .container {
-  background-color: rgb(133, 152, 171);
+  background-color: $secondary-clr;
   border-radius: 15px;
   padding: 20px;
+  color: $txt-light;
+  box-shadow: 5px 5px $tertiary-clr;
   h1 {
     padding: 10px 0;
-    color: white;
   }
 }
 </style>

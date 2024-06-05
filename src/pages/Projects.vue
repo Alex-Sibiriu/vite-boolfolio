@@ -1,7 +1,8 @@
 <script>
 
 import { store } from '../data/store';
-import axios from 'axios'
+import axios from 'axios';
+import Loader from '../components/partials/Loader.vue'
 
 import ProjectCard from '../components/partials/ProjectCard.vue';
 
@@ -9,7 +10,8 @@ export default {
   name: 'Projects',
 
   components: {
-    ProjectCard
+    ProjectCard,
+    Loader
   },
 
   data() {
@@ -21,7 +23,7 @@ export default {
       error: '',
       
       technologies: [],
-      searchTech: {},
+      searchTech: null,
 
       types: [],
       searchType: null,
@@ -51,21 +53,26 @@ export default {
       })
       .catch( error => {
         this.error = error.message;
+        this.loading = false
       })
     },
 
     searchProjects() {
-      axios.get(store.apiUrl + '/search/', {
+      this.loading = true;
+      axios.get(store.apiUrl + '/search', {
         params: {
           title: this.toSearch,
-          type: this.searchType
+          type_id: this.searchType,
+          technology_id: this.searchTech
         }
       })
       .then(response => {
         this.projects = response.data.data;
         this.pageLinks = response.data.links;
+        this.loading = false
       })
       .catch( error => {
+        this.loading = false
         console.log(error.message);
       })
     }
@@ -86,12 +93,15 @@ export default {
     <div class="main-box">
       <div class="card-wrapper">
 
-        <div>
+        <div v-if="!loading">
           <ProjectCard 
           v-for="project in projects" :key="project.id"
           :project="project"
           />
+          <h2 class="t-center" v-if="projects.length === 0">Nessun Risultato Trovato</h2>
         </div>
+
+        <Loader v-else />
 
       </div>
 
@@ -112,7 +122,7 @@ export default {
           <h2>Tecnologie</h2>
 
           <div class="badge-box">
-            <span class="tech-badge" :class="{'active': searchTech === technology}" v-for="technology in technologies" :key="`tech-${technology.id}`" @click="searchTech != technology ? searchTech = technology : searchTech = {} ">{{ technology.name }}</span>
+            <span class="tech-badge" :class="{'active': searchTech === technology.id}" v-for="technology in technologies" :key="`tech-${technology.id}`" @click="searchTech != technology.id ? searchTech = technology.id : searchTech = null ">{{ technology.name }}</span>
           </div>
         </div>
 
@@ -154,10 +164,16 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import '../assets/scss/partials/variables';
 
 .container {
-  background-color: rgb(133, 152, 171);
+  background-color: $secondary-clr;
   border-radius: 15px;
+  color: $txt-light;
+  box-shadow: 5px 5px $tertiary-clr;
+  a {
+    color: $txt-primary;
+  }
   h1 {
     text-align: center;
     padding: 10px;
@@ -171,11 +187,6 @@ export default {
         display: flex;
         flex-wrap: wrap;
       }
-      // > .loader-box {
-      //   display: flex;
-      //   justify-content: center;
-      //   align-items: center;
-      // }
     }
     .filter-box {
       border-left: 1px solid ivory;
@@ -184,15 +195,14 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      color: $txt-light;
       > h2 {
         text-align: center;
-        color: white;
         font-size: 1.7rem;
       }
       .filter-section {
         padding: 5px 20px;
         label {
-          color: white;
           padding: 5px;
           font-weight: bold;
           font-size: 1.3rem;
@@ -203,7 +213,6 @@ export default {
           padding: 10px;
         }
         h2 {
-          color: white;
           padding-left: 10px;
         }
         .badge-box {
@@ -211,6 +220,7 @@ export default {
           display: flex;
           flex-wrap: wrap;
           gap: 15px;
+          color: $txt-primary;
           .tech-badge {
             padding: 5px 10px;
             margin: 5px;
@@ -270,7 +280,8 @@ export default {
     display: flex;
     li {
       padding: 5px 10px;
-      background: ivory;
+      background: $txt-light;
+      color: $txt-primary;
       cursor: pointer;
       &:first-child {
         border-top-left-radius: 5px;

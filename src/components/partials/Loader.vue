@@ -15,16 +15,17 @@ export default {
 <style lang="scss" scoped>
 
 .box {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .loader {
-  width: 50px;
+  width: 100px;
   aspect-ratio: 1.154;
   display: grid;
-  color: #000;
+  color: #fff;
   background:
     linear-gradient(to bottom left ,#0000 calc(50% - 1px),currentColor 0 calc(50% + 1px),#0000 0) right/50% 100%,
     linear-gradient(to bottom right,#0000 calc(50% - 1px),currentColor 0 calc(50% + 1px),#0000 0) left /50% 100%,

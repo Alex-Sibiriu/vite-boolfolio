@@ -75,7 +75,7 @@ export default {
   
       <div class="show">
         <div class="left-box">
-          <img :src="'http://127.0.0.1:8000' + project.image" :alt="project.original_image_name">
+          <img :src="project.image" :alt="project.original_image_name">
   
           <div class="date">
             <p>
@@ -96,7 +96,7 @@ export default {
   
           <p><strong>Link: </strong>{{ project.link }}</p>
           
-          <h3>Descrizione:</h3>
+          <p><strong>Descrizione:</strong></p>
           <p>{{ project.description }}</p>
         </div>
       </div>
@@ -109,24 +109,29 @@ export default {
 
 <style lang="scss" scoped>
 
+@import '../assets/scss/partials/variables';
+
 .container {
-  background-color: rgb(133, 152, 171);
+  background-color: $secondary-clr;
   border-radius: 15px;
   padding: 20px;
+  color: $txt-light;
+  box-shadow: 5px 5px $tertiary-clr;
   h1 {
     padding: 10px 0;
-    color: white;
     text-align: center;
     padding-bottom: 20px;
   }
   .show {
     display: flex;
     gap: 10px;
+    font-size: 1.3rem;
     p {
       padding: 10px 0;
     }
     .right-box,
     .left-box {
+      width: 50%;
       padding: 10px;
       border: 1px solid ivory;
       border-radius: 15px;
